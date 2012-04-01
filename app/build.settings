@@ -1,0 +1,64 @@
+local androidVersionNumber = "10";
+local androidVersionName = "1.0";
+local iOSVersion = "1.0";
+
+settings =
+{
+	orientation =
+	{
+			default = "portrait",
+			content = "portrait",
+			supported =
+			{
+					"portrait"
+					--"landscape", "landscapeLeft", "landscapeRight", "portrait", "portraitUpsideDown",
+			}
+	},
+	
+	android =
+	{
+		package = "com.digitalruby.CoronaTemplate",
+		versionCode = androidVersionNumber,
+		versionName = androidVersionName
+	},
+	
+	iphone =
+	{
+		plist =
+		{
+			UIInterfaceOrientation = "UIInterfaceOrientationPortrait",
+
+			UISupportedInterfaceOrientations =
+			{
+				"UIInterfaceOrientationPortrait"
+				--"UIInterfaceOrientationPortraitUpsideDown",
+				--"UIInterfaceOrientationLandscapeLeft",
+				--"UIInterfaceOrientationLandscapeRight"
+			},
+		
+			UIApplicationExitsOnSuspend = false,
+			UIAppFonts =
+            {
+				"Bou Handwriting.ttf",
+				"MarkerFeltWide-Plain.ttf"
+            },
+			UIStatusBarHidden = true,
+			UIPrerenderedIcon = true,
+			
+			CFBundleDisplayName = "CoronaTemplate",
+			CFBundleIdentifier = "com.digitalruby.CoronaTemplate",
+			CFBundleVersion = iOSVersion,
+			CFBundleIconFile = "Icon-57.png",
+			CFBundleIconFiles =
+			{
+				"Icon-57.png", 			
+				"Icon-114.png", 
+				"Icon-72.png",
+				"Icon-50.png",
+				"Icon-29.png",
+				"Icon-58.png",
+				"Icon-512.png"
+			}
+		}
+	}
+}
