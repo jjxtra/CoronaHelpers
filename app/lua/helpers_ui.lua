@@ -369,12 +369,12 @@ function helpers.newRadioGroup(params)
 	function radioGroup:setSelectedIndex(idx)
 		if (idx == -1) then
 			for i = 1, self.numChildren, 1 do
-				self[i]._disableClearing = true;
-				self[i]:setChecked(false);
-				self[i]._disableClearing = false;
+				self[i][1]._disableClearing = true;
+				self[i][1]:setChecked(false);
+				self[i][1]._disableClearing = false;
 			end
 		else
-			self[idx]:setChecked(true);
+			self[idx][1]:setChecked(true);
 		end
 		
 		self.selectedIndex = idx;
