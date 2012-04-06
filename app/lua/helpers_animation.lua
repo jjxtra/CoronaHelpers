@@ -4,6 +4,7 @@ local sprite = require("sprite");
 -- params.spriteSheet = the createSpriteSheet object to use
 -- params.x = start x
 -- params.y = start.y 
+-- returns a sprite with a playAnimation method that takes an animation name and a finished callback. Contains stopAnimation method as well.
 function helpers.newSprite(params)
 
 	local _sprite = sprite.newSprite(params.spriteSheet.spriteSet);
@@ -23,9 +24,25 @@ function helpers.newSprite(params)
 	
 	params.parent:insert(_sprite);
 	
-	function _sprite:playAnimation(name)
+	-- name = name of the animation to play
+	-- finished = callback when sprite finishes animation, contains single parameter, the sprite that finished animating
+	function _sprite:playAnimation(name, finished)
 
 		self:pause();
+		
+		if (finished ~= nil) then
+			if (self._finished ~= nil) then
+				self:removeEventListener("sprite", self._finished);
+			end
+			self._finished = function(event)
+				if (event.phase == "end") then
+					self:removeEventListener("sprite", self._finished);
+					self._finished = nil;
+					finished(self);
+				end
+			end;
+			self:addEventListener("sprite", self._finished);
+		end
 		
 		-- HACK: Work around corona bug switching animations
         timer.performWithDelay(33, function()
